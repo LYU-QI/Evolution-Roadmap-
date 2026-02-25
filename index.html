@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoadMap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script>window.react = window.React;</script>
+  <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>html,body,#root{height:100%;margin:0;background:#0f172a;}</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    (async function () {
+      const iconNames = [
+        'Plus','Trash2','ArrowUpRight','Box','Settings2','Layers','CheckCircle2','Zap','Clock','ChevronUp','Save','Download',
+        'Calendar','Info','LayoutGrid','Database','Tag','List','Target','SlidersHorizontal','Eye','EyeOff','Search','ChevronRight',
+        'Package','ShieldCheck','Maximize2','Minimize2','X','Activity','TrendingUp','Compass','Github','Moon','Sun','Monitor'
+      ];
+      const iconBind = `const { ${iconNames.join(', ')} } = LucideReact;`;
+
+      try {
+        let source = await fetch('./evolution_roadmap_pro.jsx').then(r => r.text());
+        source = source.replace(/import\s+React,\s*\{[^}]*\}\s*from\s*['"]react['"];?/, 'const { useState, useMemo, useEffect, useRef } = React;');
+        source = source.replace(/import\s*\{[\s\S]*?\}\s*from\s*['"]lucide-react['"];?/, '');
+        source = source.replace(/export\s+default\s+App\s*;?/, '');
+
+        const code = `${iconBind}\n${source}\nconst root = ReactDOM.createRoot(document.getElementById('root')); root.render(React.createElement(App));`;
+        const transformed = Babel.transform(code, { presets: ['react'] }).code;
+        eval(transformed);
+      } catch (err) {
+        document.getElementById('root').innerHTML = '<pre style="color:#fca5a5;padding:16px;white-space:pre-wrap;font:12px/1.4 ui-monospace,Menlo,monospace;">页面加载失败: ' + (err && err.stack ? err.stack : err) + '</pre>';
+      }
+    })();
+  </script>
+</body>
+</html>
