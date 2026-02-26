@@ -44,9 +44,9 @@ const INITIAL_DATA = {
       name: '智能助手 App', 
       color: '#10b981',
       versions: [
-        { id: 'v-1-1', label: 'V1.0 灯塔版', time: 30, features: ["核心语义理解", "多轮对话引擎"] },
-        { id: 'v-1-2', label: 'V1.5 专业版', time: 180, features: ["知识库深度检索", "插件化架构"] },
-        { id: 'v-1-3', label: 'V2.0 旗舰版', time: 300, features: ["跨端实时同步", "企业安全大脑"] }
+        { id: 'v-1-1', label: 'V1.0 灯塔版', date: '2026-01-31', features: ["核心语义理解", "多轮对话引擎"] },
+        { id: 'v-1-2', label: 'V1.5 专业版', date: '2026-06-30', features: ["知识库深度检索", "插件化架构"] },
+        { id: 'v-1-3', label: 'V2.0 旗舰版', date: '2026-10-28', features: ["跨端实时同步", "企业安全大脑"] }
       ]
     },
     { 
@@ -54,8 +54,8 @@ const INITIAL_DATA = {
       name: '云端协作工作台', 
       color: '#059669',
       versions: [
-        { id: 'v-2-1', label: '预览版 0.8', time: 90, features: ["实时协作基座", "基础看板配置"] },
-        { id: 'v-2-2', label: '正式版 1.2', time: 240, features: ["自动化工作流", "深度集成生态"] }
+        { id: 'v-2-1', label: '预览版 0.8', date: '2026-04-01', features: ["实时协作基座", "基础看板配置"] },
+        { id: 'v-2-2', label: '正式版 1.2', date: '2026-08-29', features: ["自动化工作流", "深度集成生态"] }
       ]
     }
   ],
@@ -237,6 +237,16 @@ const App = () => {
     const target = new Date(`${dateStr}T00:00:00`);
     const offsetDays = Math.floor((target.getTime() - timelineStartDate.getTime()) / DAY_MS);
     return offsetDays * monthWidth;
+  };
+
+  const getVersionOffset = (version) => {
+    if (!version) return 0;
+    if (typeof version.time === 'number' && Number.isFinite(version.time)) {
+      return Math.max(0, Math.min(version.time, TOTAL_DAYS - 1));
+    }
+    const versionDate = version.date || '';
+    if (!versionDate) return 0;
+    return Math.max(0, Math.min(dateInputToOffset(versionDate), TOTAL_DAYS - 1));
   };
 
   const projectRenderItems = useMemo(() => {
@@ -587,7 +597,7 @@ const App = () => {
                            const n = [...data.products];
                            n[pIdx].versions = [
                              ...n[pIdx].versions,
-                             { id: `v-${Date.now()}`, label: `V${n[pIdx].versions.length + 1}.0`, time: 0, features: ['新能力'] }
+                             { id: `v-${Date.now()}`, label: `V${n[pIdx].versions.length + 1}.0`, date: offsetToDateInput(0), features: ['新能力'] }
                            ];
                            updateData({ products: n });
                          }}
@@ -609,14 +619,15 @@ const App = () => {
                              }}
                            />
                           <input
-                            type="number"
-                            min="0"
-                            max={TOTAL_DAYS - 1}
-                            className="w-20 bg-slate-900/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300"
-                            value={v.time}
+                            type="date"
+                            min={offsetToDateInput(0)}
+                            max={offsetToDateInput(TOTAL_DAYS - 1)}
+                            className="w-[132px] bg-slate-900/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300"
+                            value={v.date || offsetToDateInput(getVersionOffset(v))}
                             onChange={e => {
                               const n = [...data.products];
-                              n[pIdx].versions[vIdx].time = Math.max(0, Math.min(Number(e.target.value), TOTAL_DAYS - 1));
+                              n[pIdx].versions[vIdx].date = e.target.value;
+                              n[pIdx].versions[vIdx].time = getVersionOffset({ ...n[pIdx].versions[vIdx], date: e.target.value });
                               updateData({ products: n });
                             }}
                           />
@@ -1034,8 +1045,10 @@ const App = () => {
                     <g transform={`translate(0, ${projectAreaH})`} className="transition-all duration-300"><rect width="100%" height={NEXUS_H} fill="#020617" fillOpacity="0.6" /><line x1="0" y1={NEXUS_H/2} x2="100%" y2={NEXUS_H/2} stroke="#334155" strokeWidth="1" strokeDasharray="30 15" /></g>
                     {visibleProducts.map((prod, pi) => {
                        const yCenter = projectAreaH + NEXUS_H + SECTION_HEADER_H + (pi * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2);
-                       const vT = prod.versions.map(v => v.time), pS = vT.length > 0 ? Math.min(...vT) : 0, pE = vT.length > 0 ? Math.max(...vT) : 0;
-                       return (<g key={prod.id} transform={`translate(0, ${yCenter})`} className="transition-all duration-300"><rect x={pS * monthWidth} y={-14} width={(pE - pS) * monthWidth} height={28} fill={prod.color} fillOpacity="0.06" rx="14" stroke={prod.color} strokeOpacity="0.1" strokeWidth="1" /><line x1={pS * monthWidth} y1={0} x2={pE * monthWidth} y2={0} stroke={prod.color} strokeWidth="4" strokeLinecap="round" strokeOpacity="0.8" /><line x1={0} y1={0} x2="100%" y2={0} stroke={prod.color} strokeWidth="1" strokeDasharray="15 15" strokeOpacity="0.1" />{prod.versions.map(v => (<g key={v.id} transform={`translate(${v.time * monthWidth}, 0)`}><circle r="14" fill="#0f172a" stroke={prod.color} strokeWidth="3" className="shadow-lg shadow-black" /><circle r="6" fill={prod.color} className="animate-pulse" /><text y={35} textAnchor="middle" className="text-[11px] font-black uppercase tracking-tighter" style={{ fill: prod.color }}>{v.label}</text>{v.features && v.features.map((feat, fIdx) => (<text key={fIdx} x="0" y={52 + fIdx * 14} textAnchor="middle" className="text-[9px] fill-slate-500 font-bold tracking-tight italic opacity-70">/ {feat}</text>))}</g>))}</g>);
+                       const versionOffsets = prod.versions.map(v => getVersionOffset(v));
+                       const pS = versionOffsets.length > 0 ? Math.min(...versionOffsets) : 0;
+                       const pE = versionOffsets.length > 0 ? Math.max(...versionOffsets) : 0;
+                       return (<g key={prod.id} transform={`translate(0, ${yCenter})`} className="transition-all duration-300"><rect x={pS * monthWidth} y={-14} width={(pE - pS) * monthWidth} height={28} fill={prod.color} fillOpacity="0.06" rx="14" stroke={prod.color} strokeOpacity="0.1" strokeWidth="1" /><line x1={pS * monthWidth} y1={0} x2={pE * monthWidth} y2={0} stroke={prod.color} strokeWidth="4" strokeLinecap="round" strokeOpacity="0.8" /><line x1={0} y1={0} x2="100%" y2={0} stroke={prod.color} strokeWidth="1" strokeDasharray="15 15" strokeOpacity="0.1" />{prod.versions.map(v => (<g key={v.id} transform={`translate(${getVersionOffset(v) * monthWidth}, 0)`}><circle r="14" fill="#0f172a" stroke={prod.color} strokeWidth="3" className="shadow-lg shadow-black" /><circle r="6" fill={prod.color} className="animate-pulse" /><text y={35} textAnchor="middle" className="text-[11px] font-black uppercase tracking-tighter" style={{ fill: prod.color }}>{v.label}</text>{v.features && v.features.map((feat, fIdx) => (<text key={fIdx} x="0" y={52 + fIdx * 14} textAnchor="middle" className="text-[9px] fill-slate-500 font-bold tracking-tight italic opacity-70">/ {feat}</text>))}</g>))}</g>);
                     })}
                     {data.feedbacks.map(fb => {
                        const prodIdx = visibleProducts.findIndex(p => p.versions.some(v => v.id === fb.versionId));
@@ -1052,7 +1065,7 @@ const App = () => {
                        const qualityColor = deliveryQuality === 'SOP' ? '#10b981' : (deliveryQuality === 'POC' ? '#fbbf24' : '#60a5fa');
                        const qualityBg = deliveryQuality === 'SOP' ? '#10b98115' : (deliveryQuality === 'POC' ? '#f59e0b15' : '#3b82f615');
                        const qualityStroke = deliveryQuality === 'SOP' ? '#10b98144' : (deliveryQuality === 'POC' ? '#f59e0b44' : '#3b82f644');
-                       const startX = version.time * monthWidth, startY = projectAreaH + NEXUS_H + SECTION_HEADER_H + (prodIdx * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2), endX = getXFromDate(deliveryDate);
+                       const startX = getVersionOffset(version) * monthWidth, startY = projectAreaH + NEXUS_H + SECTION_HEADER_H + (prodIdx * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2), endX = getXFromDate(deliveryDate);
                        const isHovered = hoveredFeedbackId === fb.id;
                        return (
                          <g
