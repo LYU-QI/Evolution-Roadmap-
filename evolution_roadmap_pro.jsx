@@ -3,7 +3,7 @@ import {
   Plus, Trash2, ArrowUpRight, Box, Settings2, Layers, 
   CheckCircle2, Zap, Clock, ChevronUp, Save, Download, 
   Calendar, Info, LayoutGrid, Database, Tag, List, Target,
-  SlidersHorizontal, Eye, EyeOff, Search, ChevronRight, 
+  SlidersHorizontal, Eye, EyeOff, Search, ChevronRight, ChevronDown,
   Package, ShieldCheck, Maximize2, Minimize2, X, Activity,
   TrendingUp, Compass, Github, Moon, Sun, Monitor
 } from 'lucide-react';
@@ -19,24 +19,24 @@ const INITIAL_DATA = {
       id: 'proj-1', 
       name: '核心架构 4.0 重构', 
       start: 0, 
-      end: 11, 
+      end: 330, 
       color: '#6366f1',
       subProjects: [
-        { id: 'sub-1-1', name: '底层服务拆分', start: 0, end: 5 },
-        { id: 'sub-1-2', name: '平台网关升级', start: 4, end: 10 }
+        { id: 'sub-1-1', name: '底层服务拆分', start: 0, end: 150 },
+        { id: 'sub-1-2', name: '平台网关升级', start: 120, end: 300 }
       ]
     },
     { 
       id: 'proj-2', 
       name: 'AI 自动化执行引擎', 
-      start: 3, 
-      end: 14, 
+      start: 90, 
+      end: 420, 
       color: '#818cf8',
       subProjects: [
-        { id: 'sub-2-1', name: '推理编排核心', start: 3, end: 9 }
+        { id: 'sub-2-1', name: '推理编排核心', start: 90, end: 270 }
       ]
     },
-    { id: 'proj-3', name: '全球合规化管理中心', start: 7, end: 17, color: '#4f46e5', subProjects: [] },
+    { id: 'proj-3', name: '全球合规化管理中心', start: 210, end: 510, color: '#4f46e5', subProjects: [] },
   ],
   products: [
     { 
@@ -44,9 +44,9 @@ const INITIAL_DATA = {
       name: '智能助手 App', 
       color: '#10b981',
       versions: [
-        { id: 'v-1-1', label: 'V1.0 灯塔版', time: 1, features: ["核心语义理解", "多轮对话引擎"] },
-        { id: 'v-1-2', label: 'V1.5 专业版', time: 6, features: ["知识库深度检索", "插件化架构"] },
-        { id: 'v-1-3', label: 'V2.0 旗舰版', time: 10, features: ["跨端实时同步", "企业安全大脑"] }
+        { id: 'v-1-1', label: 'V1.0 灯塔版', time: 30, features: ["核心语义理解", "多轮对话引擎"] },
+        { id: 'v-1-2', label: 'V1.5 专业版', time: 180, features: ["知识库深度检索", "插件化架构"] },
+        { id: 'v-1-3', label: 'V2.0 旗舰版', time: 300, features: ["跨端实时同步", "企业安全大脑"] }
       ]
     },
     { 
@@ -54,17 +54,17 @@ const INITIAL_DATA = {
       name: '云端协作工作台', 
       color: '#059669',
       versions: [
-        { id: 'v-2-1', label: '预览版 0.8', time: 3, features: ["实时协作基座", "基础看板配置"] },
-        { id: 'v-2-2', label: '正式版 1.2', time: 8, features: ["自动化工作流", "深度集成生态"] }
+        { id: 'v-2-1', label: '预览版 0.8', time: 90, features: ["实时协作基座", "基础看板配置"] },
+        { id: 'v-2-2', label: '正式版 1.2', time: 240, features: ["自动化工作流", "深度集成生态"] }
       ]
     }
   ],
   feedbacks: [
-    { id: 'f-1', versionId: 'v-1-1', projectId: 'proj-1', subProjectId: 'sub-1-1', deliverable: '鉴权插件 SDK', quality: 'SOP', targetDate: '2026-03-15' },
-    { id: 'f-2', versionId: 'v-2-1', projectId: 'proj-1', subProjectId: 'sub-1-2', deliverable: '多租户架构模板', quality: 'POC', targetDate: '2026-05-18' },
-    { id: 'f-3', versionId: 'v-1-2', projectId: 'proj-2', subProjectId: 'sub-2-1', deliverable: 'NLP 逻辑接口', quality: 'SOP', targetDate: '2026-08-05' },
-    { id: 'f-4', versionId: 'v-2-2', projectId: 'proj-2', subProjectId: null, deliverable: '动态扩容脚本', quality: 'SOP', targetDate: '2026-10-12' },
-    { id: 'f-5', versionId: 'v-1-3', projectId: 'proj-3', subProjectId: null, deliverable: 'GDPR 审计框架', quality: 'SOP', targetDate: '2027-01-25' }
+    { id: 'f-1', versionId: 'v-1-1', projectId: 'proj-1', subProjectId: 'sub-1-1', deliveryScope: '鉴权插件 SDK', deliveryQuality: 'SOP', deliveryDate: '2026-03-15' },
+    { id: 'f-2', versionId: 'v-2-1', projectId: 'proj-1', subProjectId: 'sub-1-2', deliveryScope: '多租户架构模板', deliveryQuality: 'POC', deliveryDate: '2026-05-18' },
+    { id: 'f-3', versionId: 'v-1-2', projectId: 'proj-2', subProjectId: 'sub-2-1', deliveryScope: 'NLP 逻辑接口', deliveryQuality: 'SOP', deliveryDate: '2026-08-05' },
+    { id: 'f-4', versionId: 'v-2-2', projectId: 'proj-2', subProjectId: null, deliveryScope: '动态扩容脚本', deliveryQuality: 'SOP', deliveryDate: '2026-10-12' },
+    { id: 'f-5', versionId: 'v-1-3', projectId: 'proj-3', subProjectId: null, deliveryScope: 'GDPR 审计框架', deliveryQuality: 'SOP', deliveryDate: '2027-01-25' }
   ]
 };
 
@@ -76,9 +76,17 @@ const App = () => {
   const svgRef = useRef(null);
   
   // 视觉参数
-  const [monthWidth, setMonthWidth] = useState(240);
+  const [monthWidth, setMonthWidth] = useState(14);
   const [hiddenProjectIds, setHiddenProjectIds] = useState([]);
   const [collapsedChartProjectIds, setCollapsedChartProjectIds] = useState([]);
+  const [timeScale, setTimeScale] = useState('week');
+  const [hoveredFeedbackId, setHoveredFeedbackId] = useState(null);
+  const [projectFilterIds, setProjectFilterIds] = useState([]);
+  const [isProjectFilterOpen, setIsProjectFilterOpen] = useState(false);
+  const [productFilterIds, setProductFilterIds] = useState([]);
+  const [isProductFilterOpen, setIsProductFilterOpen] = useState(false);
+  const projectFilterRef = useRef(null);
+  const productFilterRef = useRef(null);
 
   // 布局常量
   const SIDEBAR_WIDTH = 300;    
@@ -87,15 +95,24 @@ const App = () => {
   const PROJECT_ROW_H = 120;    
   const NEXUS_H = 70;           
   const PRODUCT_ROW_H = 130;    
-  const TOTAL_MONTHS = 36; 
+  const TOTAL_MONTHS = 36;
+  const DAY_MS = 24 * 60 * 60 * 1000;
 
   const normalizedProjects = useMemo(() => 
     data.projects.map(p => ({ ...p, subProjects: p.subProjects || [] }))
   , [data.projects]);
 
   const visibleProjects = useMemo(() => 
-    normalizedProjects.filter(p => !hiddenProjectIds.includes(p.id))
-  , [normalizedProjects, hiddenProjectIds]);
+    normalizedProjects.filter(p => {
+      if (hiddenProjectIds.includes(p.id)) return false;
+      if (projectFilterIds.length === 0) return true;
+      return projectFilterIds.includes(p.id);
+    })
+  , [normalizedProjects, hiddenProjectIds, projectFilterIds]);
+
+  const visibleProducts = useMemo(() =>
+    data.products.filter(p => productFilterIds.length === 0 || productFilterIds.includes(p.id))
+  , [data.products, productFilterIds]);
 
   const updateData = (newData) => setData({ ...data, ...newData });
 
@@ -114,21 +131,112 @@ const App = () => {
     setCollapsedChartProjectIds(prev => prev.filter(id => validIds.has(id)));
   }, [data.projects]);
 
-  const formatMonthLabel = (step) => {
-    const total = (data.startMonth - 1) + step;
-    const y = data.startYear + Math.floor(total / 12);
-    const m = (total % 12) + 1;
-    return `${y}年${m.toString().padStart(2, '0')}月`;
+  useEffect(() => {
+    const validIds = new Set(data.projects.map(p => p.id));
+    setProjectFilterIds(prev => prev.filter(id => validIds.has(id)));
+  }, [data.projects]);
+
+  useEffect(() => {
+    const validIds = new Set(data.products.map(p => p.id));
+    setProductFilterIds(prev => prev.filter(id => validIds.has(id)));
+  }, [data.products]);
+
+  useEffect(() => {
+    const onDocMouseDown = (event) => {
+      const t = event.target;
+      if (isProjectFilterOpen && projectFilterRef.current && !projectFilterRef.current.contains(t)) {
+        setIsProjectFilterOpen(false);
+      }
+      if (isProductFilterOpen && productFilterRef.current && !productFilterRef.current.contains(t)) {
+        setIsProductFilterOpen(false);
+      }
+    };
+
+    const onEsc = (event) => {
+      if (event.key === 'Escape') {
+        setIsProjectFilterOpen(false);
+        setIsProductFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', onDocMouseDown);
+    document.addEventListener('keydown', onEsc);
+    return () => {
+      document.removeEventListener('mousedown', onDocMouseDown);
+      document.removeEventListener('keydown', onEsc);
+    };
+  }, [isProjectFilterOpen, isProductFilterOpen]);
+
+  const timelineStartDate = useMemo(
+    () => new Date(data.startYear, data.startMonth - 1, 1),
+    [data.startYear, data.startMonth]
+  );
+
+  const TOTAL_DAYS = useMemo(() => {
+    const end = new Date(timelineStartDate);
+    end.setMonth(end.getMonth() + TOTAL_MONTHS);
+    return Math.ceil((end.getTime() - timelineStartDate.getTime()) / DAY_MS);
+  }, [timelineStartDate]);
+
+  const formatMonthLabel = (dayOffset) => {
+    const date = new Date(timelineStartDate.getTime() + dayOffset * DAY_MS);
+    const y = date.getFullYear();
+    const m = (date.getMonth() + 1).toString().padStart(2, '0');
+    const d = date.getDate().toString().padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  };
+
+  const timelineTicks = useMemo(() => {
+    if (timeScale === 'week') {
+      const ticks = [];
+      for (let i = 0; i < TOTAL_DAYS; i += 7) {
+        const date = new Date(timelineStartDate.getTime() + i * DAY_MS);
+        const m = (date.getMonth() + 1).toString().padStart(2, '0');
+        const d = date.getDate().toString().padStart(2, '0');
+        ticks.push({ offset: i, label: `W${Math.floor(i / 7) + 1} ${m}-${d}` });
+      }
+      return ticks;
+    }
+
+    if (timeScale === 'month') {
+      const ticks = [];
+      for (let i = 0; i < TOTAL_DAYS; i++) {
+        const date = new Date(timelineStartDate.getTime() + i * DAY_MS);
+        if (i === 0 || date.getDate() === 1) {
+          const y = date.getFullYear();
+          const m = (date.getMonth() + 1).toString().padStart(2, '0');
+          ticks.push({ offset: i, label: `${y}-${m}` });
+        }
+      }
+      return ticks;
+    }
+
+    return [...Array(TOTAL_DAYS)].map((_, i) => ({
+      offset: i,
+      label: formatMonthLabel(i),
+    }));
+  }, [timeScale, TOTAL_DAYS, timelineStartDate]);
+
+  const offsetToDateInput = (offsetDays) => {
+    const date = new Date(timelineStartDate.getTime() + offsetDays * DAY_MS);
+    const y = date.getFullYear();
+    const m = (date.getMonth() + 1).toString().padStart(2, '0');
+    const d = date.getDate().toString().padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  };
+
+  const dateInputToOffset = (value) => {
+    if (!value) return 0;
+    const target = new Date(`${value}T00:00:00`);
+    if (Number.isNaN(target.getTime())) return 0;
+    return Math.floor((target.getTime() - timelineStartDate.getTime()) / DAY_MS);
   };
 
   const getXFromDate = (dateStr) => {
     if (!dateStr) return 0;
-    const target = new Date(dateStr);
-    const start = new Date(data.startYear, data.startMonth - 1, 1);
-    const totalMonthOffset = (target.getFullYear() - start.getFullYear()) * 12 + (target.getMonth() - start.getMonth());
-    const daysInMonth = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
-    const dayRatio = (target.getDate() - 1) / daysInMonth;
-    return (totalMonthOffset + dayRatio) * monthWidth;
+    const target = new Date(`${dateStr}T00:00:00`);
+    const offsetDays = Math.floor((target.getTime() - timelineStartDate.getTime()) / DAY_MS);
+    return offsetDays * monthWidth;
   };
 
   const projectRenderItems = useMemo(() => {
@@ -196,20 +304,22 @@ const App = () => {
     const timeHeaderGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
     timeHeaderGroup.setAttribute("transform", `translate(0, -${TIMELINE_HEADER_H})`);
     
-    for (let i = 0; i < TOTAL_MONTHS; i++) {
-        const x = i * monthWidth;
+    timelineTicks.forEach((tick, idx) => {
+        const x = tick.offset * monthWidth;
+        const nextOffset = idx < timelineTicks.length - 1 ? timelineTicks[idx + 1].offset : TOTAL_DAYS;
+        const cellW = Math.max((nextOffset - tick.offset) * monthWidth - 2, 2);
         const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        rect.setAttribute("x", x + 5); rect.setAttribute("y", 10);
-        rect.setAttribute("width", monthWidth - 10); rect.setAttribute("height", 40);
+        rect.setAttribute("x", x + 1); rect.setAttribute("y", 10);
+        rect.setAttribute("width", cellW); rect.setAttribute("height", 40);
         rect.setAttribute("rx", "12"); rect.setAttribute("fill", "#1e293b");
         timeHeaderGroup.appendChild(rect);
 
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        text.setAttribute("x", x + monthWidth / 2); text.setAttribute("y", 30);
+        text.setAttribute("x", x + cellW / 2); text.setAttribute("y", 30);
         text.setAttribute("text-anchor", "middle"); text.setAttribute("class", "time-label");
-        text.textContent = formatMonthLabel(i);
+        text.textContent = tick.label;
         timeHeaderGroup.appendChild(text);
-    }
+    });
     mainGroup.appendChild(timeHeaderGroup);
 
     // 绘制侧边栏中文标签镜像
@@ -229,7 +339,7 @@ const App = () => {
         sidebarGroup.appendChild(subText);
     });
 
-    data.products.forEach((prod, i) => {
+    visibleProducts.forEach((prod, i) => {
         const y = projectAreaH + NEXUS_H + SECTION_HEADER_H + (i * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2);
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
         text.setAttribute("x", "50"); text.setAttribute("y", y - 8);
@@ -268,9 +378,9 @@ const App = () => {
   };
 
   const projectAreaH = SECTION_HEADER_H + projectRenderItems.reduce((sum, item) => sum + item.rowHeight, 0);
-  const productAreaH = SECTION_HEADER_H + (data.products.length * PRODUCT_ROW_H);
+  const productAreaH = SECTION_HEADER_H + (visibleProducts.length * PRODUCT_ROW_H);
   const totalViewHeight = projectAreaH + NEXUS_H + productAreaH + 100;
-  const totalTimelineWidth = TOTAL_MONTHS * monthWidth;
+  const totalTimelineWidth = TOTAL_DAYS * monthWidth;
 
   return (
     <div className="flex h-screen bg-[#0f172a] text-slate-200 overflow-hidden font-sans selection:bg-indigo-500/30">
@@ -302,7 +412,7 @@ const App = () => {
         <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar text-xs">
            {activeTab === 'projects' && (
              <div className="space-y-4">
-                <button onClick={() => updateData({projects: [...data.projects, {id: `p-${Date.now()}`, name: '新研发项目轨道', start: 0, end: 6, color: '#818cf8', subProjects: []}]})} className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-black shadow-lg hover:scale-[1.02] active:scale-95 transition-all uppercase tracking-widest">+ 新增项目维度</button>
+                <button onClick={() => updateData({projects: [...data.projects, {id: `p-${Date.now()}`, name: '新研发项目轨道', start: 0, end: 180, color: '#818cf8', subProjects: []}]})} className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-black shadow-lg hover:scale-[1.02] active:scale-95 transition-all uppercase tracking-widest">+ 新增项目维度</button>
                 {data.projects.map((p, idx) => (
                   <div key={p.id} className={`p-5 rounded-2xl border transition-all ${hiddenProjectIds.includes(p.id) ? 'opacity-40 grayscale border-slate-800' : 'bg-slate-800/40 border-slate-700/50 shadow-sm hover:border-indigo-500/30'}`}>
                     <div className="flex items-center justify-between">
@@ -318,14 +428,15 @@ const App = () => {
                       <label className="flex items-center gap-2 text-[10px] text-slate-500 font-black uppercase tracking-wider">
                         开始
                         <input
-                          type="number"
-                          min="0"
-                          max={TOTAL_MONTHS - 1}
+                          type="date"
+                          min={offsetToDateInput(0)}
+                          max={offsetToDateInput(TOTAL_DAYS - 1)}
                           className="w-full bg-slate-900/60 border border-slate-700 rounded-lg px-2 py-1 text-slate-200"
-                          value={p.start}
+                          value={offsetToDateInput(p.start)}
                           onChange={e => {
                             const n = [...data.projects];
-                            n[idx].start = Math.max(0, Math.min(Number(e.target.value), n[idx].end - 1));
+                            const nextStart = dateInputToOffset(e.target.value);
+                            n[idx].start = Math.max(0, Math.min(nextStart, n[idx].end - 1));
                             updateData({ projects: n });
                           }}
                         />
@@ -333,14 +444,15 @@ const App = () => {
                       <label className="flex items-center gap-2 text-[10px] text-slate-500 font-black uppercase tracking-wider">
                         结束
                         <input
-                          type="number"
-                          min="1"
-                          max={TOTAL_MONTHS}
+                          type="date"
+                          min={offsetToDateInput(1)}
+                          max={offsetToDateInput(TOTAL_DAYS)}
                           className="w-full bg-slate-900/60 border border-slate-700 rounded-lg px-2 py-1 text-slate-200"
-                          value={p.end}
+                          value={offsetToDateInput(p.end)}
                           onChange={e => {
                             const n = [...data.projects];
-                            n[idx].end = Math.max(n[idx].start + 1, Math.min(Number(e.target.value), TOTAL_MONTHS));
+                            const nextEnd = dateInputToOffset(e.target.value);
+                            n[idx].end = Math.max(n[idx].start + 1, Math.min(nextEnd, TOTAL_DAYS));
                             updateData({ projects: n });
                           }}
                         />
@@ -354,7 +466,7 @@ const App = () => {
                             const n = [...data.projects];
                             const currentSubs = n[idx].subProjects || [];
                             const defaultStart = n[idx].start;
-                            const defaultEnd = Math.min(n[idx].end, defaultStart + 3);
+                            const defaultEnd = Math.min(n[idx].end, defaultStart + 90);
                             n[idx].subProjects = [
                               ...currentSubs,
                               { id: `sub-${Date.now()}`, name: `子项目 ${(currentSubs.length || 0) + 1}`, start: defaultStart, end: defaultEnd }
@@ -392,27 +504,33 @@ const App = () => {
                             </div>
                             <div className="mt-2 grid grid-cols-2 gap-2">
                               <input
-                                type="number"
-                                min={p.start}
-                                max={Math.max(p.start, p.end - 1)}
+                                type="date"
+                                min={offsetToDateInput(p.start)}
+                                max={offsetToDateInput(Math.max(p.start, p.end - 1))}
                                 className="w-full bg-slate-900/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300"
-                                value={sub.start}
+                                value={offsetToDateInput(sub.start)}
                                 onChange={e => {
                                   const n = [...data.projects];
-                                  const nextStart = Math.max(p.start, Math.min(Number(e.target.value), n[idx].subProjects[sIdx].end - 1));
+                                  const nextStart = Math.max(
+                                    p.start,
+                                    Math.min(dateInputToOffset(e.target.value), n[idx].subProjects[sIdx].end - 1)
+                                  );
                                   n[idx].subProjects[sIdx].start = nextStart;
                                   updateData({ projects: n });
                                 }}
                               />
                               <input
-                                type="number"
-                                min={Math.max(p.start + 1, sub.start + 1)}
-                                max={p.end}
+                                type="date"
+                                min={offsetToDateInput(Math.max(p.start + 1, sub.start + 1))}
+                                max={offsetToDateInput(p.end)}
                                 className="w-full bg-slate-900/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300"
-                                value={sub.end}
+                                value={offsetToDateInput(sub.end)}
                                 onChange={e => {
                                   const n = [...data.projects];
-                                  const nextEnd = Math.min(p.end, Math.max(Number(e.target.value), n[idx].subProjects[sIdx].start + 1));
+                                  const nextEnd = Math.min(
+                                    p.end,
+                                    Math.max(dateInputToOffset(e.target.value), n[idx].subProjects[sIdx].start + 1)
+                                  );
                                   n[idx].subProjects[sIdx].end = nextEnd;
                                   updateData({ projects: n });
                                 }}
@@ -490,18 +608,18 @@ const App = () => {
                                updateData({ products: n });
                              }}
                            />
-                           <input
-                             type="number"
-                             min="0"
-                             max={TOTAL_MONTHS - 1}
-                             className="w-20 bg-slate-900/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300"
-                             value={v.time}
-                             onChange={e => {
-                               const n = [...data.products];
-                               n[pIdx].versions[vIdx].time = Math.max(0, Math.min(Number(e.target.value), TOTAL_MONTHS - 1));
-                               updateData({ products: n });
-                             }}
-                           />
+                          <input
+                            type="number"
+                            min="0"
+                            max={TOTAL_DAYS - 1}
+                            className="w-20 bg-slate-900/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300"
+                            value={v.time}
+                            onChange={e => {
+                              const n = [...data.products];
+                              n[pIdx].versions[vIdx].time = Math.max(0, Math.min(Number(e.target.value), TOTAL_DAYS - 1));
+                              updateData({ products: n });
+                            }}
+                          />
                            <button
                              onClick={() => {
                                const n = [...data.products];
@@ -537,9 +655,9 @@ const App = () => {
                           versionId: firstVersion.id,
                           projectId: firstProject.id,
                           subProjectId: null,
-                          deliverable: '新交付项',
-                          quality: 'SOP',
-                          targetDate: `${data.startYear}-01-15`
+                          deliveryScope: '新交付范围',
+                          deliveryQuality: 'SOP',
+                          deliveryDate: `${data.startYear}-01-15`
                         }
                       ]
                     });
@@ -554,15 +672,20 @@ const App = () => {
                   );
                   return (
                     <div key={fb.id} className="p-4 rounded-2xl border bg-slate-800/40 border-slate-700/50 shadow-sm space-y-3">
-                      <input
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">交付范围</p>
+                      <textarea
                         className="w-full bg-slate-900/60 border border-slate-700 rounded px-3 py-2 text-slate-100 text-xs font-bold"
-                        value={fb.deliverable}
+                        rows={2}
+                        placeholder="交付范围"
+                        value={fb.deliveryScope || fb.deliverable || ''}
                         onChange={e => {
                           const n = [...data.feedbacks];
-                          n[fbIdx].deliverable = e.target.value;
+                          n[fbIdx].deliveryScope = e.target.value;
                           updateData({ feedbacks: n });
                         }}
                       />
+                      </div>
                       <div className="grid grid-cols-2 gap-2">
                         <select
                           className="bg-slate-900/60 border border-slate-700 rounded px-2 py-2 text-slate-200"
@@ -596,28 +719,37 @@ const App = () => {
                         >
                           {versionOptions.map(v => <option key={v.id} value={v.id}>{v.label}</option>)}
                         </select>
-                        <select
-                          className="bg-slate-900/60 border border-slate-700 rounded px-2 py-2 text-slate-200"
-                          value={fb.quality}
-                          onChange={e => {
-                            const n = [...data.feedbacks];
-                            n[fbIdx].quality = e.target.value;
-                            updateData({ feedbacks: n });
-                          }}
-                        >
-                          <option value="SOP">SOP</option>
-                          <option value="POC">POC</option>
-                        </select>
-                        <input
-                          type="date"
-                          className="bg-slate-900/60 border border-slate-700 rounded px-2 py-2 text-slate-200"
-                          value={fb.targetDate}
-                          onChange={e => {
-                            const n = [...data.feedbacks];
-                            n[fbIdx].targetDate = e.target.value;
-                            updateData({ feedbacks: n });
-                          }}
-                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          交付质量
+                          <select
+                            className="mt-1 w-full bg-slate-900/60 border border-slate-700 rounded px-2 py-2 text-slate-200"
+                            value={fb.deliveryQuality || fb.quality || 'SOP'}
+                            onChange={e => {
+                              const n = [...data.feedbacks];
+                              n[fbIdx].deliveryQuality = e.target.value;
+                              updateData({ feedbacks: n });
+                            }}
+                          >
+                            <option value="SOP">SOP</option>
+                            <option value="POC">POC</option>
+                            <option value="OTA">OTA</option>
+                          </select>
+                        </label>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          交付时间
+                          <input
+                            type="date"
+                            className="mt-1 w-full bg-slate-900/60 border border-slate-700 rounded px-2 py-2 text-slate-200"
+                            value={fb.deliveryDate || fb.targetDate || ''}
+                            onChange={e => {
+                              const n = [...data.feedbacks];
+                              n[fbIdx].deliveryDate = e.target.value;
+                              updateData({ feedbacks: n });
+                            }}
+                          />
+                        </label>
                       </div>
                       <button
                         onClick={() => updateData({ feedbacks: data.feedbacks.filter((_, i) => i !== fbIdx) })}
@@ -642,7 +774,7 @@ const App = () => {
       {/* 2. 主展示视口 */}
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         {/* 汉化顶栏 */}
-        <header className={`transition-all duration-700 overflow-hidden flex items-center justify-between px-10 shrink-0 z-50 border-b border-slate-800/50 bg-slate-900/40 backdrop-blur-xl ${isFocusMode ? 'h-0 opacity-0 pointer-events-none' : 'h-24 opacity-100'}`}>
+        <header className={`transition-all duration-700 flex items-center justify-between px-10 shrink-0 z-50 border-b border-slate-800/50 bg-slate-900/40 backdrop-blur-xl ${isFocusMode ? 'h-0 opacity-0 pointer-events-none overflow-hidden' : 'h-24 opacity-100 overflow-visible'}`}>
           <div className="flex items-center gap-8">
             <button onClick={() => setIsConfigOpen(!isConfigOpen)} className={`w-12 h-12 flex items-center justify-center rounded-2xl transition-all shadow-xl ${isConfigOpen ? 'bg-indigo-500 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}><Settings2 size={20} /></button>
             <div>
@@ -657,10 +789,100 @@ const App = () => {
           </div>
 
           <div className="flex items-center gap-6">
+             <div className="relative" ref={projectFilterRef}>
+               <button
+                 onClick={() => setIsProjectFilterOpen(v => !v)}
+                 className="flex items-center gap-2 bg-slate-800/50 px-4 py-3 rounded-2xl border border-slate-700/50 shadow-inner text-[11px] font-black text-slate-200"
+               >
+                 项目筛选
+                 <ChevronDown size={14} className={`transition-transform ${isProjectFilterOpen ? 'rotate-180' : ''}`} />
+               </button>
+               {isProjectFilterOpen && (
+                 <div className="absolute right-0 mt-2 w-[280px] max-h-[300px] overflow-auto custom-scrollbar rounded-2xl border border-slate-700/70 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 z-[70]">
+                   <button
+                     onClick={() => setProjectFilterIds([])}
+                     className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-black transition-all ${projectFilterIds.length === 0 ? 'bg-indigo-500/20 text-indigo-300' : 'text-slate-300 hover:bg-slate-800'}`}
+                   >
+                     全部项目
+                   </button>
+                   {data.projects.map((p) => {
+                     const selected = projectFilterIds.length === 0 || projectFilterIds.includes(p.id);
+                     return (
+                       <button
+                         key={p.id}
+                         onClick={() => {
+                           setProjectFilterIds(prev => {
+                             const isAllMode = prev.length === 0;
+                             if (isAllMode) return data.projects.filter(x => x.id !== p.id).map(x => x.id);
+                             return prev.includes(p.id) ? prev.filter(id => id !== p.id) : [...prev, p.id];
+                           });
+                         }}
+                         className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-bold transition-all flex items-center justify-between ${selected ? 'bg-indigo-500/15 text-indigo-200' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}`}
+                       >
+                         <span className="truncate pr-3">{p.name}</span>
+                         <span className={`text-[10px] ${selected ? 'text-indigo-300' : 'text-slate-600'}`}>{selected ? '已选' : '未选'}</span>
+                       </button>
+                     );
+                   })}
+                 </div>
+               )}
+             </div>
+             <div className="relative" ref={productFilterRef}>
+               <button
+                 onClick={() => setIsProductFilterOpen(v => !v)}
+                 className="flex items-center gap-2 bg-slate-800/50 px-4 py-3 rounded-2xl border border-slate-700/50 shadow-inner text-[11px] font-black text-slate-200"
+               >
+                 产品筛选
+                 <ChevronDown size={14} className={`transition-transform ${isProductFilterOpen ? 'rotate-180' : ''}`} />
+               </button>
+               {isProductFilterOpen && (
+                 <div className="absolute right-0 mt-2 w-[280px] max-h-[300px] overflow-auto custom-scrollbar rounded-2xl border border-slate-700/70 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 z-[70]">
+                   <button
+                     onClick={() => setProductFilterIds([])}
+                     className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-black transition-all ${productFilterIds.length === 0 ? 'bg-emerald-500/20 text-emerald-300' : 'text-slate-300 hover:bg-slate-800'}`}
+                   >
+                     全部产品
+                   </button>
+                   {data.products.map((p) => {
+                     const selected = productFilterIds.length === 0 || productFilterIds.includes(p.id);
+                     return (
+                       <button
+                         key={p.id}
+                         onClick={() => {
+                           setProductFilterIds(prev => {
+                             const isAllMode = prev.length === 0;
+                             if (isAllMode) return data.products.filter(x => x.id !== p.id).map(x => x.id);
+                             return prev.includes(p.id) ? prev.filter(id => id !== p.id) : [...prev, p.id];
+                           });
+                         }}
+                         className={`w-full text-left px-3 py-2 rounded-xl text-[11px] font-bold transition-all flex items-center justify-between ${selected ? 'bg-emerald-500/15 text-emerald-200' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}`}
+                       >
+                         <span className="truncate pr-3">{p.name}</span>
+                         <span className={`text-[10px] ${selected ? 'text-emerald-300' : 'text-slate-600'}`}>{selected ? '已选' : '未选'}</span>
+                       </button>
+                     );
+                   })}
+                 </div>
+               )}
+             </div>
              <div className="flex items-center gap-4 bg-slate-800/50 px-6 py-3 rounded-2xl border border-slate-700/50 shadow-inner">
                 <SlidersHorizontal size={14} className="text-slate-500"/>
-                <input type="range" min="150" max="600" step="10" className="w-32 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" value={monthWidth} onChange={(e) => setMonthWidth(Number(e.target.value))}/>
-                <span className="text-[11px] font-mono font-black text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">缩放: {Math.round((monthWidth/240)*100)}%</span>
+                <input type="range" min="1" max="96" step="1" className="w-32 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" value={monthWidth} onChange={(e) => setMonthWidth(Number(e.target.value))}/>
+                <span className="text-[11px] font-mono font-black text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">缩放: {Math.round((monthWidth/14)*100)}%</span>
+             </div>
+             <div className="flex items-center gap-1 bg-slate-800/50 px-2 py-2 rounded-2xl border border-slate-700/50 shadow-inner">
+               {[
+                 { id: 'week', label: '周' },
+                 { id: 'month', label: '月' },
+               ].map(s => (
+                 <button
+                   key={s.id}
+                   onClick={() => setTimeScale(s.id)}
+                   className={`px-3 py-1.5 rounded-xl text-[11px] font-black transition-all ${timeScale === s.id ? 'bg-indigo-500/20 text-indigo-300 ring-1 ring-indigo-500/30' : 'text-slate-400 hover:text-slate-200'}`}
+                 >
+                   {s.label}
+                 </button>
+               ))}
              </div>
              <div className="flex gap-3">
                 <button onClick={() => setIsFocusMode(true)} className="flex items-center gap-2 px-6 py-3 bg-slate-100 text-slate-900 rounded-2xl text-xs font-black hover:bg-white active:scale-95 transition-all shadow-xl"><Maximize2 size={16}/> 演示模式</button>
@@ -675,8 +897,8 @@ const App = () => {
              <div className="bg-slate-900/80 backdrop-blur-3xl px-2 py-5 rounded-l-[1.5rem] border border-white/10 border-r-0 shadow-[-10px_0_30px_rgba(0,0,0,0.4)] flex flex-col items-center gap-5 group transition-all hover:px-4">
                 <div className="flex flex-col items-center gap-1.5"><Zap size={14} className="text-indigo-400 opacity-80"/><div className="w-0.5 h-4 rounded-full bg-indigo-500/20"></div></div>
                 <div className="flex flex-col items-center gap-3">
-                   <div className="relative h-24 flex items-center justify-center"><input type="range" min="150" max="600" step="10" orient="vertical" style={{ appearance: 'slider-vertical', height: '100%', width: '3px' }} className="cursor-pointer accent-indigo-400 bg-slate-800 rounded-full" value={monthWidth} onChange={(e) => setMonthWidth(Number(e.target.value))}/></div>
-                   <span className="text-[9px] font-black font-mono text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded uppercase">{Math.round((monthWidth/240)*100)}%</span>
+                   <div className="relative h-24 flex items-center justify-center"><input type="range" min="1" max="96" step="1" orient="vertical" style={{ appearance: 'slider-vertical', height: '100%', width: '3px' }} className="cursor-pointer accent-indigo-400 bg-slate-800 rounded-full" value={monthWidth} onChange={(e) => setMonthWidth(Number(e.target.value))}/></div>
+                   <span className="text-[9px] font-black font-mono text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded uppercase">{Math.round((monthWidth/14)*100)}%</span>
                 </div>
                 <div className="w-4 h-[1px] bg-white/5"></div>
                 <button onClick={handleExportSVG} className="w-8 h-8 flex items-center justify-center bg-indigo-500/10 text-indigo-400 rounded-full hover:bg-indigo-500/20 transition-all mb-1" title="导出图片"><Download size={14}/></button>
@@ -695,11 +917,15 @@ const App = () => {
                   <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">演进时间轴</span>
                </div>
                <div className="flex transition-all duration-200">
-                  {[...Array(TOTAL_MONTHS)].map((_, i) => (
-                    <div key={i} className="shrink-0 flex items-center justify-center font-mono text-[10px] font-black text-slate-500 border-r border-slate-900/50 bg-transparent" style={{ width: monthWidth, height: TIMELINE_HEADER_H }}>
-                      <span className="px-3 py-1 rounded-lg bg-slate-900/50 border border-slate-800/30 font-mono tracking-tight text-white">{formatMonthLabel(i)}</span>
+                  {timelineTicks.map((tick, idx) => {
+                    const nextOffset = idx < timelineTicks.length - 1 ? timelineTicks[idx + 1].offset : TOTAL_DAYS;
+                    const tickW = Math.max((nextOffset - tick.offset) * monthWidth, monthWidth);
+                    return (
+                    <div key={tick.offset} className="shrink-0 flex items-center justify-center font-mono text-[10px] font-black text-slate-500 border-r border-slate-900/50 bg-transparent" style={{ width: tickW, height: TIMELINE_HEADER_H }}>
+                      <span className="px-2 py-1 rounded-lg bg-slate-900/50 border border-slate-800/30 font-mono tracking-tight text-white text-[9px]">{tick.label}</span>
                     </div>
-                  ))}
+                    );
+                  })}
                </div>
             </div>
 
@@ -734,7 +960,7 @@ const App = () => {
                  <div className="bg-slate-950 border-r border-slate-800 pointer-events-auto flex items-center px-10 shadow-2xl transition-all duration-300" style={{ width: SIDEBAR_WIDTH, height: NEXUS_H }}><div className="flex items-center gap-4"><Zap size={18} className="text-indigo-500 animate-pulse"/><span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">价值协同中枢</span></div></div>
                  <div className="bg-[#0f172a]/95 backdrop-blur-md border-r border-slate-800 pointer-events-auto transition-all duration-500" style={{ width: SIDEBAR_WIDTH, height: productAreaH }}>
                     <div className="px-10 font-black text-[11px] uppercase text-emerald-400 flex items-center gap-3 tracking-widest border-b border-slate-800/10 shadow-sm" style={{ height: SECTION_HEADER_H }}><Compass size={14}/> 产品演进节点</div>
-                    {data.products.map(prod => (
+                    {visibleProducts.map(prod => (
                       <div key={prod.id} className="px-10 flex items-center border-b border-slate-900/30" style={{ height: PRODUCT_ROW_H }}>
                         <div className="flex items-center gap-5"><div className="w-1.5 h-12 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.25)]" style={{ backgroundColor: prod.color }}></div><div><p className="text-sm font-black text-slate-100 truncate max-w-[180px] leading-tight text-white uppercase">{prod.name}</p><p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-1">核心路线演进</p></div></div>
                       </div>
@@ -746,7 +972,19 @@ const App = () => {
               <div className="relative transition-all duration-300 shrink-0" style={{ width: totalTimelineWidth, height: totalViewHeight }}>
                  <svg ref={svgRef} width={totalTimelineWidth} height={totalViewHeight} className="absolute inset-0 overflow-visible transition-all duration-200">
                     <defs><filter id="eliteShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceAlpha" stdDeviation="12" /><feOffset dx="0" dy="15" result="offsetblur" /><feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
-                    {[...Array(TOTAL_MONTHS)].map((_, i) => ( <line key={i} x1={i * monthWidth} y1={0} x2={i * monthWidth} y2={totalViewHeight} stroke="#1e293b" strokeWidth="1" strokeDasharray="4 8" /> ))}
+                    {timelineTicks.map((tick) => (
+                      <line
+                        key={tick.offset}
+                        x1={tick.offset * monthWidth}
+                        y1={0}
+                        x2={tick.offset * monthWidth}
+                        y2={totalViewHeight}
+                        stroke="#1e293b"
+                        strokeWidth="1"
+                        strokeDasharray={timeScale === 'day' ? '4 8' : '2 0'}
+                        opacity={timeScale === 'day' ? 0.75 : 0.95}
+                      />
+                    ))}
                     {projectRenderItems.map((p, pi) => {
                        const yCenter = p.mainY;
                        const subs = p.chartSubs;
@@ -794,22 +1032,84 @@ const App = () => {
                        );
                     })}
                     <g transform={`translate(0, ${projectAreaH})`} className="transition-all duration-300"><rect width="100%" height={NEXUS_H} fill="#020617" fillOpacity="0.6" /><line x1="0" y1={NEXUS_H/2} x2="100%" y2={NEXUS_H/2} stroke="#334155" strokeWidth="1" strokeDasharray="30 15" /></g>
-                    {data.products.map((prod, pi) => {
+                    {visibleProducts.map((prod, pi) => {
                        const yCenter = projectAreaH + NEXUS_H + SECTION_HEADER_H + (pi * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2);
                        const vT = prod.versions.map(v => v.time), pS = vT.length > 0 ? Math.min(...vT) : 0, pE = vT.length > 0 ? Math.max(...vT) : 0;
                        return (<g key={prod.id} transform={`translate(0, ${yCenter})`} className="transition-all duration-300"><rect x={pS * monthWidth} y={-14} width={(pE - pS) * monthWidth} height={28} fill={prod.color} fillOpacity="0.06" rx="14" stroke={prod.color} strokeOpacity="0.1" strokeWidth="1" /><line x1={pS * monthWidth} y1={0} x2={pE * monthWidth} y2={0} stroke={prod.color} strokeWidth="4" strokeLinecap="round" strokeOpacity="0.8" /><line x1={0} y1={0} x2="100%" y2={0} stroke={prod.color} strokeWidth="1" strokeDasharray="15 15" strokeOpacity="0.1" />{prod.versions.map(v => (<g key={v.id} transform={`translate(${v.time * monthWidth}, 0)`}><circle r="14" fill="#0f172a" stroke={prod.color} strokeWidth="3" className="shadow-lg shadow-black" /><circle r="6" fill={prod.color} className="animate-pulse" /><text y={35} textAnchor="middle" className="text-[11px] font-black uppercase tracking-tighter" style={{ fill: prod.color }}>{v.label}</text>{v.features && v.features.map((feat, fIdx) => (<text key={fIdx} x="0" y={52 + fIdx * 14} textAnchor="middle" className="text-[9px] fill-slate-500 font-bold tracking-tight italic opacity-70">/ {feat}</text>))}</g>))}</g>);
                     })}
                     {data.feedbacks.map(fb => {
-                       const prodIdx = data.products.findIndex(p => p.versions.some(v => v.id === fb.versionId));
+                       const prodIdx = visibleProducts.findIndex(p => p.versions.some(v => v.id === fb.versionId));
                        if (prodIdx === -1) return null;
                        if (isChartCollapsed(fb.projectId)) return null;
-                       const prodLine = data.products[prodIdx], version = prodLine.versions.find(v => v.id === fb.versionId);
+                       const prodLine = visibleProducts[prodIdx], version = prodLine.versions.find(v => v.id === fb.versionId);
                        const endY = fb.subProjectId
                          ? subProjectYMap[`${fb.projectId}::${fb.subProjectId}`]
                          : projectYMap[fb.projectId];
                        if (endY === undefined) return null;
-                       const startX = version.time * monthWidth, startY = projectAreaH + NEXUS_H + SECTION_HEADER_H + (prodIdx * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2), endX = getXFromDate(fb.targetDate);
-                       return (<g key={fb.id} className="animate-in fade-in zoom-in-95 duration-700"><path d={`M ${startX} ${startY} C ${startX + (endX - startX)/2} ${startY - 50} ${endX - (endX - startX)/2} ${endY + 50} ${endX} ${endY}`} fill="none" stroke={prodLine.color} strokeWidth="3" strokeDasharray="12 6" strokeOpacity="0.35" /><circle cx={endX} cy={endY} r="6" fill={prodLine.color} stroke="#0f172a" strokeWidth="2" className="shadow-2xl shadow-black" /><g transform={`translate(${endX + 18}, ${endY - 48})`} filter="url(#eliteShadow)"><rect width="230" height="90" rx="24" fill="#1e293b" fillOpacity="0.95" stroke="white" strokeOpacity="0.08" strokeWidth="1" /><path d="M 0 24 Q 0 0 24 0 L 24 90 Q 0 90 0 66 Z" fill={prodLine.color} /><g transform="translate(40, 24)"><text x="0" y="6" className="text-[13px] font-black fill-white tracking-tight truncate w-[160px] text-white uppercase">{fb.deliverable}</text><text x="0" y="24" className="text-[10px] fill-indigo-400 font-black uppercase tracking-[0.1em]">{prodLine.name}</text><g transform="translate(0, 42)"><rect width="48" height="20" rx="10" fill={fb.quality === 'SOP' ? '#10b98115' : '#f59e0b15'} stroke={fb.quality === 'SOP' ? '#10b98144' : '#f59e0b44'} strokeWidth="1" /><text x="24" y="14" textAnchor="middle" className="text-[10px] font-black" style={{ fill: fb.quality === 'SOP' ? '#10b981' : '#fbbf24' }}>{fb.quality}</text><g transform="translate(58, 0)"><rect width="112" height="20" rx="10" fill="#0f172a" stroke="#ffffff10" strokeWidth="1" /><text x="56" y="14" textAnchor="middle" className="text-[10px] font-mono font-black fill-white uppercase tracking-tighter text-white">{fb.targetDate}</text></g></g></g></g></g>);
+                       const deliveryScope = fb.deliveryScope || fb.deliverable || '';
+                       const deliveryQuality = fb.deliveryQuality || fb.quality || 'SOP';
+                       const deliveryDate = fb.deliveryDate || fb.targetDate || '';
+                       const qualityColor = deliveryQuality === 'SOP' ? '#10b981' : (deliveryQuality === 'POC' ? '#fbbf24' : '#60a5fa');
+                       const qualityBg = deliveryQuality === 'SOP' ? '#10b98115' : (deliveryQuality === 'POC' ? '#f59e0b15' : '#3b82f615');
+                       const qualityStroke = deliveryQuality === 'SOP' ? '#10b98144' : (deliveryQuality === 'POC' ? '#f59e0b44' : '#3b82f644');
+                       const startX = version.time * monthWidth, startY = projectAreaH + NEXUS_H + SECTION_HEADER_H + (prodIdx * PRODUCT_ROW_H) + (PRODUCT_ROW_H / 2), endX = getXFromDate(deliveryDate);
+                       const isHovered = hoveredFeedbackId === fb.id;
+                       return (
+                         <g
+                           key={fb.id}
+                           className="animate-in fade-in zoom-in-95 duration-700"
+                           onMouseEnter={() => setHoveredFeedbackId(fb.id)}
+                           onMouseLeave={() => setHoveredFeedbackId(null)}
+                         >
+                           <path
+                             d={`M ${startX} ${startY} C ${startX + (endX - startX)/2} ${startY - 50} ${endX - (endX - startX)/2} ${endY + 50} ${endX} ${endY}`}
+                             fill="none"
+                             stroke={prodLine.color}
+                             strokeWidth={isHovered ? "4" : "3"}
+                             strokeDasharray="12 6"
+                             strokeOpacity={isHovered ? "0.65" : "0.35"}
+                           />
+                           <circle
+                             cx={endX}
+                             cy={endY}
+                             r={isHovered ? "8" : "6"}
+                             fill={prodLine.color}
+                             stroke="#0f172a"
+                             strokeWidth="2"
+                             className="shadow-2xl shadow-black"
+                           />
+                           <g transform={`translate(${endX + 12}, ${endY - 14})`}>
+                             <rect width="54" height="20" rx="10" fill={qualityBg} stroke={qualityStroke} strokeWidth="1" />
+                             <text x="27" y="14" textAnchor="middle" className="text-[11px] font-black" style={{ fill: qualityColor }}>
+                               {deliveryQuality}
+                             </text>
+                           </g>
+                          {isHovered && (
+                            <g transform={`translate(${endX + 18}, ${endY - 48})`} filter="url(#eliteShadow)">
+                              <rect width="340" height="126" rx="22" fill="#0b1220" fillOpacity="0.98" stroke="#ffffff20" strokeWidth="1" />
+                              <rect x="1" y="1" width="338" height="34" rx="21" fill="#111a2b" />
+                              <rect x="0" y="0" width="8" height="126" rx="8" fill={prodLine.color} />
+
+                              <text x="18" y="22" className="text-[11px] fill-slate-400 font-black uppercase tracking-[0.16em]">反哺信息卡片</text>
+                              <text x="322" y="22" textAnchor="end" className="text-[10px] fill-indigo-300 font-black uppercase tracking-[0.08em]">{prodLine.name}</text>
+
+                              <g transform="translate(18, 44)">
+                                <text x="0" y="0" className="text-[10px] fill-slate-500 font-black uppercase tracking-[0.12em]">交付范围</text>
+                                <rect x="0" y="8" width="302" height="28" rx="10" fill="#141e30" stroke="#ffffff12" strokeWidth="1" />
+                                <text x="10" y="26" className="text-[12px] font-black fill-white tracking-tight">{deliveryScope || '-'}</text>
+
+                                <text x="0" y="54" className="text-[10px] fill-slate-500 font-black uppercase tracking-[0.12em]">交付质量</text>
+                                <rect x="68" y="42" width="62" height="20" rx="10" fill={qualityBg} stroke={qualityStroke} strokeWidth="1" />
+                                <text x="99" y="56" textAnchor="middle" className="text-[10px] font-black" style={{ fill: qualityColor }}>{deliveryQuality}</text>
+
+                                <text x="160" y="54" className="text-[10px] fill-slate-500 font-black uppercase tracking-[0.12em]">交付时间</text>
+                                <rect x="214" y="42" width="92" height="20" rx="10" fill="#0f172a" stroke="#ffffff18" strokeWidth="1" />
+                                <text x="260" y="56" textAnchor="middle" className="text-[10px] font-mono font-black fill-white tracking-tight">{deliveryDate || '-'}</text>
+                              </g>
+                            </g>
+                          )}
+                         </g>
+                       );
                     })}
                  </svg>
               </div>

@@ -18,13 +18,13 @@
     (async function () {
       const iconNames = [
         'Plus','Trash2','ArrowUpRight','Box','Settings2','Layers','CheckCircle2','Zap','Clock','ChevronUp','Save','Download',
-        'Calendar','Info','LayoutGrid','Database','Tag','List','Target','SlidersHorizontal','Eye','EyeOff','Search','ChevronRight',
+        'Calendar','Info','LayoutGrid','Database','Tag','List','Target','SlidersHorizontal','Eye','EyeOff','Search','ChevronRight','ChevronDown',
         'Package','ShieldCheck','Maximize2','Minimize2','X','Activity','TrendingUp','Compass','Github','Moon','Sun','Monitor'
       ];
       const iconBind = `const { ${iconNames.join(', ')} } = LucideReact;`;
 
       try {
-        let source = await fetch('./evolution_roadmap_pro.jsx').then(r => r.text());
+        let source = await fetch(`./evolution_roadmap_pro.jsx?v=${Date.now()}`).then(r => r.text());
         source = source.replace(/import\s+React,\s*\{[^}]*\}\s*from\s*['"]react['"];?/, 'const { useState, useMemo, useEffect, useRef } = React;');
         source = source.replace(/import\s*\{[\s\S]*?\}\s*from\s*['"]lucide-react['"];?/, '');
         source = source.replace(/export\s+default\s+App\s*;?/, '');
