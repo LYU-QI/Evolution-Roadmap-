@@ -642,6 +642,54 @@ const App = () => {
                              <Trash2 size={12} />
                            </button>
                          </div>
+                         <div className="rounded-lg border border-slate-800/70 bg-slate-900/40 p-2 space-y-2">
+                           <div className="flex items-center justify-between">
+                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">
+                               特性配置 ({(v.features || []).length})
+                             </p>
+                             <button
+                               onClick={() => {
+                                 const n = [...data.products];
+                                 const current = n[pIdx].versions[vIdx].features || [];
+                                 n[pIdx].versions[vIdx].features = [...current, '新特性'];
+                                 updateData({ products: n });
+                               }}
+                               className="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-[10px] font-black hover:bg-indigo-500/30"
+                             >
+                               + 特性
+                             </button>
+                           </div>
+                           {(v.features || []).map((feature, fIdx) => (
+                             <div key={`${v.id}-feature-${fIdx}`} className="flex items-center gap-2">
+                               <input
+                                 className="flex-1 bg-slate-950/60 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-200"
+                                 value={feature}
+                                 onChange={e => {
+                                   const n = [...data.products];
+                                   const current = [...(n[pIdx].versions[vIdx].features || [])];
+                                   current[fIdx] = e.target.value;
+                                   n[pIdx].versions[vIdx].features = current;
+                                   updateData({ products: n });
+                                 }}
+                               />
+                               <button
+                                 onClick={() => {
+                                   const n = [...data.products];
+                                   const current = [...(n[pIdx].versions[vIdx].features || [])];
+                                   n[pIdx].versions[vIdx].features = current.filter((_, i) => i !== fIdx);
+                                   updateData({ products: n });
+                                 }}
+                                 className="text-slate-600 hover:text-rose-400"
+                                 title="删除特性"
+                               >
+                                 <Trash2 size={12} />
+                               </button>
+                             </div>
+                           ))}
+                           {(v.features || []).length === 0 && (
+                             <p className="text-[10px] text-slate-600 italic">暂无特性，点击右上角新增</p>
+                           )}
+                         </div>
                        </div>
                      ))}
                      {prod.versions.length === 0 && <p className="text-[10px] text-slate-600 italic">暂无版本</p>}
